@@ -25,7 +25,6 @@ Bazin:
   buton opreste lumina ambientala:
     id: 110
     argumente: intensitate, culoare
-
   senzor temperatura apa bazin:
     id: 200
     argumente: temperatura
@@ -41,7 +40,6 @@ Bazin:
   senzor acces:
     id: 204
     argumente: stareAcces
-
   Ceas:
     id: 0
     argumente: minut, ora
@@ -72,7 +70,6 @@ Bazin:
   Temperatura dorita:
     id: 9
     argumente: temperatura
-
 Reguli:
   '0':
     ora > 8:00 && ziua != sambata/duminica:
@@ -121,20 +118,16 @@ Reguli:
     '1':
       intensitate: 0
       culoare: 'off'
-  '103':
-    temperaturaDorita +=1
-  '104':
-    temperaturaDorita -=1
+  '103': temperaturaDorita +=1
+  '104': temperaturaDorita -=1
   '105':
     '2':
       stare acces: 'on'
   '106':
     '2':
       stare acces: 'off'
-  '107': 
-    temperaturaDorita+=1
-  '108': 
-    temperaturaDorita-=1
+  '107': temperaturaDorita+=1
+  '108': temperaturaDorita-=1
   '109':
     '6':
       intensitate: 100
@@ -143,16 +136,11 @@ Reguli:
     '6':
       intensitate: 0
       culoare: 'off'
-  '200':
-    temperatura apa bazin
-  '201':
-    intensitate lumina bazin
-  '202':
-   temperatura ambientala
-  '203':
-    intensitate lumina ambientala
-  '204':
-    id
+  '200': temperatura apa bazin
+  '201': intensitate lumina bazin
+  '202': temperatura ambientala
+  '203': intensitate lumina ambientala
+  '204': id
 Sala de clasa:
   buton pornire lumina ambientala:
     id: 301
@@ -179,4 +167,3 @@ Sala de clasa:
   senzor videoproiector:
     id: 402
     argumente: stare videoproiector
-
