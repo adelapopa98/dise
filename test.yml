@@ -40,22 +40,22 @@ Bazin:
   senzor acces:
     id: 204
     argumente: stareAcces
-  Ceas:
+  ceas bazin:
     id: 0
-    argumente: minut, ora
+    argumente: minut, ora, zi
   Lumina bazin:
     id: 1
     argumente: intensitate, culoare
   Usa Acces:
     id: 2
     argumente: stare acces
-  Centrala:
+  Centrala bazin:
     id: 3
     argumente: stare centrala
-  Pompa:
+  Pompa bazin:
     id: 4
     argumente: stare pompa
-  Radiatoare:
+  Radiatoare bazin:
     id: 5
     argumente: stare radiator
   Lumina ambientala:
@@ -70,77 +70,6 @@ Bazin:
   Temperatura dorita:
     id: 9
     argumente: temperatura
-Reguli:
-  '0':
-    ora > 8:00 && ziua != sambata/duminica:
-      '1':
-        intensitate: 90
-        culoare: alb
-      '2':
-        stare acces: 'on'
-      '3':
-        stare centrala: 'on'
-      '4':
-        stare pompa: 'on'
-      '5':
-        stare radiator: 'on'
-      '6':
-        intensitate: 100
-        culoare: alb
-    ora > 11:00:
-      '6':
-        intensitate: 60
-        culoare: alb
-    ora > 13:00:
-      '6':
-        intensitate: 0
-        culoare: 'off'
-    ora > 18:00:
-      '1':
-        intensitate: 0
-        culoare: 'off'
-      '2':
-        stare acces: 'off'
-      '3':
-        stare centrala: 'off'
-      '4':
-        stare pompa: 'off'
-      '5':
-        stare radiator: 'off'
-      '6':
-        intensitate: 0
-        culoare: 'off'
-  '101':
-    '1':
-      intensitate: 100
-      culoare: alb
-  '102':
-    '1':
-      intensitate: 0
-      culoare: 'off'
-  '103': temperaturaDorita +=1
-  '104': temperaturaDorita -=1
-  '105':
-    '2':
-      stare acces: 'on'
-  '106':
-    '2':
-      stare acces: 'off'
-  '107': temperaturaDorita+=1
-  '108': temperaturaDorita-=1
-  '109':
-    '6':
-      intensitate: 100
-      culoare: alb
-  '110':
-    '6':
-      intensitate: 0
-      culoare: 'off'
-  '200': temperatura apa bazin
-  '201': intensitate lumina bazin
-  '202': temperatura ambientala
-  '203': intensitate lumina ambientala
-  '204': id
 Sala de clasa:
   buton pornire lumina ambientala:
     id: 301
@@ -167,3 +96,107 @@ Sala de clasa:
   senzor videoproiector:
     id: 402
     argumente: stare videoproiector
+  lumina sala de clasa:
+    id: 11
+    argumente: intensitate, culoare
+  radiatoare:
+    id: 12
+    argumente: stare radiator
+  videoproiector:
+    id: 13
+    argumente: stare videoproiector
+  ceas:
+    id: 14
+    argumente: minut, ora, zi
+Reguli:
+  Reguli Bazin:
+    '0':
+      '1':
+        intensitate: 90,
+        culoare: alb
+      '2':
+        stare acces: 'on'
+      '3':
+        stare centrala: 'on'
+      '4':
+        stare pompa: 'on'
+      '5':
+        stare radiator: 'on'
+      '6':
+        intensitate: 100
+        culoare: alb
+      ora > 8:00 && ziua != sambata/duminica: null
+      ora > 11:00:
+        '6':
+          intensitate: 60
+          culoare: alb
+      ora > 13:00:
+        '6':
+          intensitate: 0
+          culoare: 'off'
+      ora > 18:00:
+        '1':
+          intensitate: 0
+          culoare: 'off'
+        '2':
+          stare acces: 'off'
+        '3':
+          stare centrala: 'off'
+        '4':
+          stare pompa: 'off'
+        '5':
+          stare radiator: 'off'
+        '6':
+          intensitate: 0
+          culoare: 'off'
+    '101':
+      '1':
+        intensitate: 100
+        culoare: alb
+    '102':
+      '1':
+        intensitate: 0
+        culoare: 'off'
+    '103': temperaturaDorita +=1
+    '104': temperaturaDorita -=1
+    '105':
+      '2':
+        stare acces: 'on'
+    '106':
+      '2':
+        stare acces: 'off'
+    '107': temperaturaDorita+=1
+    '108': temperaturaDorita-=1
+    '109':
+      '6':
+        intensitate: 100
+        culoare: alb
+    '110':
+      '6':
+        intensitate: 0
+        culoare: 'off'
+    '200': temperatura apa bazin
+    '201': intensitate lumina bazin
+    '202': temperatura ambientala
+    '203': intensitate lumina ambientala
+    '204': id
+  Reguli sala de clasa:
+    '301':
+      '11':
+        intensitate: 100
+        culoare: alb
+    '302':
+      '11':
+        intensitate: 0
+        culoare: 'off'
+    '303': temperaturaDorita+=1
+    '304': temperaturaDorita-=1
+    '305':
+      '13':
+        stare videoproiector: 'on'
+    '306':
+      '13':
+        stare videoproiector: 'off'
+    '400': temperatura ambientala
+    '401': intensitate lumina ambientala
+    '402': stare videoproiector

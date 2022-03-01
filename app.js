@@ -6,7 +6,7 @@ try {
     const raw = fs.readFileSync("test.yml"); // is an inbuilt application programming interface of fs module which is used to read the file and return its content. 
     const data = YAML.load(raw); //converts a YAML document to a JSON object
 
-    console.log(data);
+    console.log(JSON.stringify(data));
 
     const yaml = YAML.dump(data); //Serializes data as YAML document.
     fs.writeFileSync("test.yml", yaml, function(err, files) { //rewrite the YAML file
@@ -50,8 +50,8 @@ class Device {
 class Brain extends Device {
     constructor(name, id) {
             super(name, id);
-            this.temp = 0;
-            miniBus.on('3', (temp) => { this.temp = temp })
+            //this.temp = 0;
+            //miniBus.on('3', (temp) => { this.temp = temp })
         }
         // imi parsez yaml
         // funtie procesare mesaje care 
@@ -141,8 +141,8 @@ const readline = require('readline'); // The readline module provides an interfa
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout }); // Creates a readline Interface instance. Accepts an "options" Object that takes the following values: input - the readable stream to listen to (Required); output - the writable stream to write readline data to (Optional).
 // The process.stdin property is an inbuilt application programming interface of the process module which listens for the user input. The stdin property of the process object is a Readable Stream.
 // The process.stdout property is an inbuilt application programming interface of the process module which is used to send data out of our program.
-rl.setPrompt('s | l | b | a | c | p | q >'); // method sets the prompt that will be written to output whenever
-rl.prompt(); // writes the InterfaceConstructor instances configured prompt to a new line in output in order to provide a user with a new location at which to provide input.
+//rl.setPrompt('s | l | b | a | c | p | q >'); // method sets the prompt that will be written to output whenever
+//rl.prompt(); // writes the InterfaceConstructor instances configured prompt to a new line in output in order to provide a user with a new location at which to provide input.
 rl.on('line', function(line) { // The 'line' event is emitted whenever the input stream receives an end-of-line input (\n, \r, or \r\n). This usually occurs when the user presses Enter or Return.
     switch (line.trim()) {
         case 's':
