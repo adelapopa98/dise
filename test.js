@@ -27,8 +27,10 @@ var miniBus = function(n) {
 
 // --- class setup
 class Device {
-    constructor(name, id) { this.name = name;
-        this.id = id; }
+    constructor(name, id) {
+        this.name = name;
+        this.id = id;
+    }
     get status() { console.log(`*** ${this.id} ${this.name}`) }
 }
 
@@ -103,3 +105,31 @@ rl.on('line', function(line) {
     console.log('exit');
     process.exit(0);
 });
+// cod
+let temp = { bazin: 18 }
+let bus = { emit: function(m) { console.log(`trimis mesaj ${m}`) } }
+
+let rules = {
+    "0": {
+        "temp.bazin >= 20": [2, 3],
+        "temp.bazin < 20": [4, 5]
+    }
+}
+
+const parseMessage = function(msg) {
+    let actions = rules[msg.id]
+    for (const [k, v] of Object.entries(actions)) {
+        if (eval(k)) {
+            v.forEach(m => bus.emit(m))
+        }
+    }
+}
+
+parseMessage({ id: 0 })
+
+/** exemplu: senzorul de tip ceas('0') emite pe id-ul lui ora si ziua, iar in functie de conditia respective
+ se apeleaza functionalitatea pentru id-urile specificate in interiorul conditiei indeplinite  
+ Exemplu:
+miniBus.on('0', functieSetataInBrain)
+miniBus.emit('0', functieSetataInBrain)
+ */
