@@ -45,9 +45,10 @@
   '1':
     intensitate: 0
     culoare: 'off'
-'103': creste temperatura bazinului
+'103':
+  this.TBazinDorita++: ''
 '104':
-  '8': this.temperaturaDorita -=1
+  this.TBazinDorita--: ''
 '105':
   '2':
     stareAcces: 'on'
@@ -55,9 +56,9 @@
   '2':
     stareAcces: 'off'
 '107':
-  '7': this.temperaturaDorita+=1
+  this.TAmbientDorita++: ''
 '108':
-  '7': this.temperaturaDorita-=1
+  this.TAmbientDorita--: ''
 '109':
   '6':
     intensitate: 100
@@ -67,6 +68,7 @@
     intensitate: 0
     culoare: 'off'
 '200':
+  this.temperaturaBazin = data.val: null
   this.temperaturaBazin >= this.TBazinDorita:
     '1':
       intensitate: 100
@@ -83,8 +85,10 @@
       stareCentrala: 'on'
     '4':
       starePompa: 'on'
-'201': senzor detectie oameni bazin
+'201':
+  this.detectie = !!data.val: null
 '202':
+  this.temperaturaAmbientala = data.val: null
   this.temperaturaAmbientala >= this.TAmbientDorita:
     '3':
       stareCentrala: 'off'
@@ -104,14 +108,21 @@
   '11':
     intensitate: 0
     culoare: 'off'
-'303': temperaturaDorita+=1
-'304': temperaturaDorita-=1
+'303':
+  this.TAmbientClasaDorita++: null
+'304':
+  this.TAmbientClasaDorita--: null
 '305':
   '13':
     stare videoproiector: 'on'
 '306':
   '13':
     stare videoproiector: 'off'
-'400': temperatura ambientala
+'400':
+  this.temperaturaAmbientalaClasa = data.val: null
 '401': intensitate lumina ambientala
 '402': stare videoproiector
+vars: >-
+  this.temperaturaAmbientala=0; this.temperaturaBazin=0;
+  this.temperaturaAmbientalaClasa=0; this.TAmbientDorita=27;
+  this.TAmbientClasaDorita=28; this.TBazinDorita=33; this.detectie=false;
