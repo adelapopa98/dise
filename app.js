@@ -1,12 +1,11 @@
 // Parse YAML file
-const { throws } = require("assert");
 const fs = require("fs"); // system module allows you to work with the file system on your computer.
 const YAML = require("js-yaml"); // In NodeJS, require() is a built-in function to include external modules that exist in separate files. require() statement basically reads a JavaScript file, executes it, and then proceeds to return the export object
-const raw = fs.readFileSync("test.yml"); // is an inbuilt application programming interface of fs module which is used to read the file and return its content. 
+const raw = fs.readFileSync("data.yml"); // is an inbuilt application programming interface of fs module which is used to read the file and return its content. 
 const file = YAML.load(raw); //converts a YAML document to a JSON object
 try {
     const yaml = YAML.dump(file); //Serializes data as YAML document.
-    fs.writeFileSync("test.yml", yaml, function(err, files) { //rewrite the YAML file
+    fs.writeFileSync("data.yml", yaml, function(err, files) { //rewrite the YAML file
         if (err) throw err;
         console.log("saved");
     });

@@ -1,0 +1,43 @@
+.container-lumini,
+.container-temperaturi,
+.container-acces,
+.container-sala-clasa,
+.container-videoproiector {
+    display: flex;
+    justify-content: space-evenly;
+    padding-bottom: 30px;
+    border-bottom: 1px solid gray;
+}
+
+.led-lumina-ambientala,
+.led-lumina-bazin,
+.led-lumina-ambientala-clasa,
+.led-videoproiector {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 12px;
+}
+
+.container-lumina-ambientala,
+.container-lumina-bazin,
+.container-temperatura-bazin,
+.container-temperatura-ambientala,
+.container-acces-bazin,
+.container-lumina-ambientala-clasa,
+.container-temperatura-ambientala-clasa,
+.container-videoproiector-clasa {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0 0 10px;
+}
+
+.container-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 20px;
+}
