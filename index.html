@@ -9,34 +9,16 @@
     <link rel="stylesheet" href="./style.css" />
     <link href="./bootstrap.min.css" rel="stylesheet" />
     <script src="./bootstrap.min.js"></script>
-    <!--<script src="./app.js"></script>-->
+
 </head>
 
 <body style="background-color: black;">
-    <div class="container-lumini">
-        <div class="container-lumina-ambientala">
-            <h2 class="text-light">Lumina ambientala bazin</h2>
-            <div class="led-lumina-ambientala"></div>
-            <div class="container-buttons">
-                <button id="porneste_lumina_ambientala" class="btn btn-warning">Porneste lumina ambientala</button>
-                <button id="opreste_lumina_ambientala" class="btn btn-dark">Porneste lumina ambientala</button>
-            </div>
-        </div>
-        <div class="container-lumina-bazin">
-            <h2 class="text-light">Lumina bazin</h2>
-            <div class="led-lumina-bazin"></div>
-            <div class="container-buttons">
-                <button id="porneste_lumina_bazin" class="btn btn-warning">Porneste lumina bazin</button>
-                <button id="opreste_lumina_bazin" class="btn btn-dark">Porneste lumina bazin</button>
-            </div>
-        </div>
-    </div>
     <div class="container-temperaturi">
         <div class="container-temperatura-bazin">
             <h2 class="text-light">Temperatura bazin</h2>
             <div class="container-inputs">
-                <input id="temperatura_bazin" placeholder="30" />
-                <input id="temperatura_bazin_dorita" placeholder="x" />
+                <input id="temperatura_bazin" value="30" readonly />
+                <input id="temperatura_bazin_dorita" value="30" readonly />
             </div>
             <div class="container-buttons">
                 <button id="temperatura_bazin_up" class="btn btn-warning">Temperatura bazin UP</button>
@@ -46,39 +28,19 @@
         <div class="container-temperatura-ambientala">
             <h2 class="text-light">Temperatura ambientala</h2>
             <div class="container-inputs">
-                <input id="temperatura_ambientala" placeholder="22" />
-                <input id="temperatura_ambientala_dorita" placeholder="x" />
+                <input id="temperatura_ambientala" value="21" readonly />
+                <input id="temperatura_ambientala_dorita" value="21" readonly/>
             </div>
             <div class="container-buttons">
                 <button id="temperatura_ambientala_up" class="btn btn-warning">Temperatura ambientala UP</button>
                 <button id="temperatura_ambientala_down" class="btn btn-dark">Temperatura ambientala DOWN</button>
             </div>
         </div>
-    </div>
-    <div class="container-acces">
-        <div class="container-acces-bazin">
-            <h2 class="text-light">Acces bazin</h2>
-            <input id="acces-bazin" placeholder="" />
-            <div class="container-buttons">
-                <button id="permite_acces" class="btn btn-success">Permite acces bazin</button>
-                <button id="respinde_acces" class="btn btn-danger">Respinge acces bazin</button>
-            </div>
-        </div>
-    </div>
-    <div class="container-sala-clasa">
-        <div class="container-lumina-ambientala-clasa">
-            <h2 class="text-light">Lumina ambientala sala de clasa</h2>
-            <div class="led-lumina-ambientala-clasa"></div>
-            <div class="container-buttons">
-                <button id="porneste-lumina-clasa" class="btn btn-primary">Porneste lumina ambientala clasa</button>
-                <button id="opreste-lumina-clasa" class="btn btn-danger">Opreste lumina ambientala clasa</button>
-            </div>
-        </div>
         <div class="container-temperatura-ambientala-clasa">
             <h2 class="text-light">Temperatura ambientala sala de clasa</h2>
             <div class="container-inputs">
-                <input id="temperatura_ambientala_clasa" placeholder="22" />
-                <input id="temperatura_ambientala_clasa_dorita" placeholder="x" />
+                <input id="temperatura_ambientala_clasa" value="21" readonly />
+                <input id="temperatura_ambientala_clasa_dorita" value="21" readonly />
             </div>
             <div class="container-buttons">
                 <button id="temperatura-clasa-UP" class="btn btn-primary">Temperatura clasa UP</button>
@@ -86,16 +48,16 @@
             </div>
         </div>
     </div>
-    <div class="container-videoproiector">
-        <div class="container-videoproiector-clasa">
-            <h2 class="text-light">Videoproiector sala de clasa</h2>
-            <div class="led-videoproiector"></div>
-            <div class="container-buttons">
-                <button id="porneste-videoproiector" class="btn btn-primary">Porneste videoproiector</button>
-                <button id="opreste-videoproiector" class="btn btn-danger">Opreste lumina videoproiector</button>
-            </div>
-        </div>
+    <div id="container-acces">
     </div>
+    <div id="container-lumini">
+
+    </div>
+    <div id="container-videoproiector">
+
+    </div>
+    <script type="text/javascript" src="./data.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
 </body>
 
 </html>

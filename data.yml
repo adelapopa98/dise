@@ -114,14 +114,14 @@
   this.TAmbientClasaDorita--: null
 '305':
   '13':
-    stare videoproiector: 'on'
+    stareVideoproiector: 'on'
 '306':
   '13':
-    stare videoproiector: 'off'
+    stareVideoproiector: 'off'
 '400':
   this.temperaturaAmbientalaClasa = data.val: null
 '401': intensitate lumina ambientala
-'402': stare videoproiector
+'402': stareVideoproiector
 vars: >-
   this.temperaturaAmbientala=0; this.temperaturaBazin=0;
   this.temperaturaAmbientalaClasa=0; this.TAmbientDorita=27;

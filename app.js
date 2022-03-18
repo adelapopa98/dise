@@ -1,17 +1,19 @@
 // Parse YAML file
-const fs = require("fs"); // system module allows you to work with the file system on your computer.
-const YAML = require("js-yaml"); // In NodeJS, require() is a built-in function to include external modules that exist in separate files. require() statement basically reads a JavaScript file, executes it, and then proceeds to return the export object
-const raw = fs.readFileSync("data.yml"); // is an inbuilt application programming interface of fs module which is used to read the file and return its content. 
-const file = YAML.load(raw); //converts a YAML document to a JSON object
-try {
-    const yaml = YAML.dump(file); //Serializes data as YAML document.
-    fs.writeFileSync("data.yml", yaml, function(err, files) { //rewrite the YAML file
-        if (err) throw err;
-        console.log("saved");
-    });
-} catch (ex) {
-    console.log(ex);
-}
+//const fs = require("fs"); // system module allows you to work with the file system on your computer.
+//const YAML = require("js-yaml"); // In NodeJS, require() is a built-in function to include external modules that exist in separate files. require() statement basically reads a JavaScript file, executes it, and then proceeds to return the export object
+//const raw = fs.readFileSync("data.yml"); // is an inbuilt application programming interface of fs module which is used to read the file and return its content. 
+//const file = YAML.load(raw);
+
+//converts a YAML document to a JSON object
+//try {
+//    const yaml = YAML.dump(file); //Serializes data as YAML document.
+//    fs.writeFileSync("data.yml", yaml, function(err, files) { //rewrite the YAML file
+//        if (err) throw err;
+//        console.log("saved");
+//    });
+//} catch (ex) {
+//    console.log(ex);
+//}
 //Minibus
 // stocheaza functii pentru un id oarecare si le ruleaza(pe emit)
 var miniBus = function(object) {
@@ -34,9 +36,9 @@ var miniBus = function(object) {
 
 // Classes
 class Device {
-    constructor(id, name) {
-        this.id = id;
+    constructor(name, id) {
         this.name = name;
+        this.id = id;
     };
     get details() { //getter methods are used to access the properties of an object.
         console.log(`From Base class: ${this.id}: ${this.name}`);
@@ -49,7 +51,7 @@ class Brain extends Device {
 
         this.time = { hour: new Date().getHours(), date: new Date().getDay() };
 
-        miniBus.on('*', (data) => console.log("Message was logged: ", data))
+        //miniBus.on('*', (data) => console.log("Message was logged: ", data))
 
         miniBus.on('0', (data) => { // parseButton
             const actions = file[data.id];
@@ -61,6 +63,7 @@ class Brain extends Device {
         });
 
         miniBus.on('00', (data) => { // parseSensors (conditions)
+
             const actions = file[data.id];
             for (const [condition, _] of Object.entries(actions)) {
                 if (eval(condition) && _) {
@@ -93,21 +96,51 @@ class Led extends Device {
     constructor(name, id) {
         super(name, id);
         this.intensitate = 0;
-        this.culoare = "off";
+        this.culoare = "black";
 
         miniBus.on(this.id.toString(), ({ intensitate, culoare }) => {
             this.intensitate = intensitate;
             this.culoare = culoare;
+            document.getElementById(`set${this.id}`).innerText = `${this.intensitate} ${this.culoare}`;
+            document.getElementById(`led-${this.id}`).style.backgroundColor = this.culoare;
         });
+        //butoanele cu informatii
+        let htmlLed = document.createElement('div');
+        htmlLed.setAttribute('class', 'container-lumina-ambientala-clasa');
+        htmlLed.setAttribute('id', this.id);
+        htmlLed.innerHTML = `
+            <h2 class="text-light">${name}</h2>
+            <div id="led-${this.id}"></div>
+            <div class="container-buttons">
+            <button id="${this.id}-on" class="btn btn-primary">Porneste ${name}</button>
+            <button id="${this.id}-off" class="btn btn-danger">Opreste ${name}</button>
+            <p class="text-white" id="set${this.id}">${this.intensitate}, ${this.culoare}</p>
+            </div>`;
+        document.getElementById('container-lumini').append(htmlLed);
     };
 };
 
 class Acces extends Device {
     constructor(name, id) {
         super(name, id);
-        this.stareAcces = 'off';
+        this.stareAcces = "respins";
 
-        miniBus.on(this.id.toString(), ({ stareAcces }) => this.stareAcces = stareAcces);
+        miniBus.on(this.id.toString(), ({ stareAcces }) => {
+            this.stareAcces = stareAcces;
+            document.getElementById('input-acces').innerText = `${this.stareAcces}`;
+        });
+
+        let htmlAcces = document.createElement('div');
+        htmlAcces.setAttribute('class', 'container-acces-bazin');
+        htmlAcces.setAttribute('id', this.id);
+        htmlAcces.innerHTML = `
+        <h2 class="text-light">${name}</h2>
+        <p id="input-acces" class="text-white">${this.stareAcces}</p>
+        <div class="container-buttons">
+            <button id="permite_acces" class="btn btn-success">Permite ${name}</button>
+            <button id="respinge_acces" class="btn btn-danger">Respinge ${name}</button>
+        </div>`;
+        document.getElementById('container-acces').append(htmlAcces);
     };
 };
 
@@ -140,18 +173,38 @@ class Videoproiector extends Device {
     constructor(name, id) {
         super(name, id);
         this.stareVideoproiector = "off";
-        miniBus.on(this.id.toString(), (stare) => this.stareVideoproiector = stare);
+
+        miniBus.on(this.id.toString(), ({ stareVideoproiector }) => {
+
+            this.stareVideoproiector = stareVideoproiector;
+            //console.log(this.stareVideoproiector);
+            document.getElementById("stare-Videoproiector").innerText = `${this.stareVideoproiector}`;
+        });
+
+        let htmlVideoproiector = document.createElement('div');
+        htmlVideoproiector.setAttribute('class', 'container-videoproiector-clasa');
+        htmlVideoproiector.setAttribute('id', this.id);
+        htmlVideoproiector.innerHTML = `
+            <h2 class="text-light">Videoproiector sala de clasa</h2>
+            <div class="led-videoproiector" style="background-color: ${this.culoare}"></div>
+            <p id="stare-Videoproiector" class="text-white">${this.stareVideoproiector}</p>
+            <div class="container-buttons">
+                <button id="porneste-videoproiector" class="btn btn-primary">Porneste videoproiector</button>
+                <button id="opreste-videoproiector" class="btn btn-danger">Opreste lumina videoproiector</button>
+            </div>`;
+        document.getElementById('container-videoproiector').append(htmlVideoproiector);
     };
 };
 
 let device_config = [
     { id: 0, type: Brain, name: "Brain" },
     { id: 1, type: Led, name: "Led - Bazin" },
-    { id: 2, type: Acces, name: "Acces" },
+    { id: 2, type: Acces, name: "Acces bazin" },
     { id: 3, type: Centrala, name: "Centrala" },
     { id: 4, type: Pompa, name: "Pompa" },
     { id: 5, type: Radiator, name: "Radiator" },
     { id: 6, type: Led, name: "Led - Ambientala" },
+    { id: 11, type: Led, name: "Led - Clasa" },
     { id: 13, type: Videoproiector, name: "Videoproiector" },
     { id: 200, type: Sensor, name: "Senzor temperatura apa bazin" },
     { id: 201, type: Sensor, name: "Senzor detectie bazin" },
@@ -160,71 +213,117 @@ let device_config = [
 ]
 
 let devices = [];
-
 device_config.forEach(dvc => {
-    devices.push(new dvc.type(dvc.id, dvc.name));
+    devices.push(new dvc.type(dvc.name, dvc.id));
 });
-
-const readline = require('readline'); // The readline module provides an interface for reading data from a Readable stream (such as process.stdin) one line at a time.
-const rl = readline.createInterface({ input: process.stdin, output: process.stdout }); // Creates a readline Interface instance. Accepts an "options" Object that takes the following values: input - the readable stream to listen to (Required); output - the writable stream to write readline data to (Optional).
+document.getElementById('1-on').addEventListener('click', () => {
+    miniBus.emit('0', { id: 101 })
+});
+document.getElementById('1-off').addEventListener('click', () => {
+    miniBus.emit('0', { id: 102 })
+});
+document.getElementById('permite_acces').addEventListener('click', () => {
+    miniBus.emit('0', { id: 105 })
+});
+document.getElementById('respinge_acces').addEventListener('click', () => {
+    miniBus.emit('0', { id: 106 })
+});
+document.getElementById('6-on').addEventListener('click', () => {
+    miniBus.emit('0', { id: 109 })
+});
+document.getElementById('6-off').addEventListener('click', () => {
+    miniBus.emit('0', { id: 110 })
+});
+document.getElementById('11-on').addEventListener('click', () => {
+    miniBus.emit('0', { id: 301 })
+});
+document.getElementById('11-off').addEventListener('click', () => {
+    miniBus.emit('0', { id: 302 })
+});
+document.getElementById('porneste-videoproiector').addEventListener('click', () => {
+    miniBus.emit('0', { id: 305 })
+});
+document.getElementById('opreste-videoproiector').addEventListener('click', () => {
+    miniBus.emit('0', { id: 306 })
+});
+document.getElementById('temperatura_bazin_up').addEventListener('click', () => {
+    miniBus.emit('0', { id: 103 });
+});
+document.getElementById('temperatura_bazin_down').addEventListener('click', () => {
+    miniBus.emit('0', { id: 104 });
+});
+document.getElementById('temperatura_ambientala_up').addEventListener('click', () => {
+    miniBus.emit('0', { id: 107 });
+});
+document.getElementById('temperatura_ambientala_down').addEventListener('click', () => {
+    miniBus.emit('0', { id: 108 });
+});
+document.getElementById('temperatura-clasa-UP').addEventListener('click', () => {
+    miniBus.emit('0', { id: 303 });
+});
+document.getElementById('temperatura-clasa-DOWN').addEventListener('click', () => {
+    miniBus.emit('0', { id: 304 });
+});
+//const readline = require('readline'); // The readline module provides an interface for reading data from a Readable stream (such as process.stdin) one line at a time.
+//const rl = readline.createInterface({ input: process.stdin, output: process.stdout }); // Creates a readline Interface instance. Accepts an "options" Object that takes the following values: input - the readable stream to listen to (Required); output - the writable stream to write readline data to (Optional).
 // The process.stdin property is an inbuilt application programming interface of the process module which listens for the user input. The stdin property of the process object is a Readable Stream.
 // The process.stdout property is an inbuilt application programming interface of the process module which is used to send data out of our program.
-rl.setPrompt('s| plb | olb | tbu | tbd | tau | tad | pla | ola | plac | olac | tacu | tacd | pv | ov | q  >'); // method sets the prompt that will be written to output whenever
-rl.prompt(); // writes the InterfaceConstructor instances configured prompt to a new line in output in order to provide a user with a new location at which to provide input.
-rl.on('line', function(line) { // The 'line' event is emitted whenever the input stream receives an end-of-line input (\n, \r, or \r\n). This usually occurs when the user presses Enter or Return.
-    switch (line.trim()) {
-        case 's':
-            debug();
-            break;
-        case 'plb':
-            miniBus.emit('0', { id: 101 });
-            break;
-        case 'olb':
-            miniBus.emit('0', { id: 102 });
-            break;
-        case 'tbu':
-            miniBus.emit('0', { id: 103 });
-            break;
-        case 'tbd':
-            miniBus.emit('0', { id: 104 });
-            break;
-        case 'tau':
-            miniBus.emit('0', { id: 107 });
-            break;
-        case 'tad':
-            miniBus.emit('0', { id: 108 });
-            break;
-        case 'pla':
-            miniBus.emit('0', { id: 109 });
-            break;
-        case 'ola':
-            miniBus.emit('0', { id: 110 });
-            break;
-        case 'plac':
-            miniBus.emit('0', { id: 301 });
-            break;
-        case 'olac':
-            miniBus.emit('0', { id: 302 });
-            break;
-        case 'tacu':
-            miniBus.emit('0', { id: 303 });
-            break;
-        case 'tacd':
-            miniBus.emit('0', { id: 304 });
-            break;
-        case 'pv':
-            miniBus.emit('0', { id: 305 });
-            break;
-        case 'ov':
-            miniBus.emit('0', { id: 306 });
-            break;
-        default:
-            console.log('invalid command');
-            break;
-    }
-    rl.prompt();
-}).on('close', function() {
-    console.log('exit');
-    process.exit(0);
-});
+//rl.setPrompt('s| plb | olb | tbu | tbd | tau | tad | pla | ola | plac | olac | tacu | tacd | pv | ov | q  >'); // method sets the prompt that will be written to output whenever
+//rl.prompt(); // writes the InterfaceConstructor instances configured prompt to a new line in output in order to provide a user with a new location at which to provide input.
+//rl.on('line', function(line) { // The 'line' event is emitted whenever the input stream receives an end-of-line input (\n, \r, or \r\n). This usually occurs when the user presses Enter or Return.
+//switch (line.trim()) {
+//    case 's':
+//        debug();
+//        break;
+//    case 'plb':
+//        miniBus.emit('0', { id: 101 });
+//        break;
+//    case 'olb':
+//        miniBus.emit('0', { id: 102 });
+//        break;
+//    case 'tbu':
+//        miniBus.emit('0', { id: 103 });
+//        break;
+//    case 'tbd':
+//        miniBus.emit('0', { id: 104 });
+//        break;
+//    case 'tau':
+//        miniBus.emit('0', { id: 107 });
+//        break;
+//    case 'tad':
+//        miniBus.emit('0', { id: 108 });
+//        break;
+//    case 'pla':
+//        miniBus.emit('0', { id: 109 });
+//        break;
+//    case 'ola':
+//        miniBus.emit('0', { id: 110 });
+//        break;
+//    case 'plac':
+//        miniBus.emit('0', { id: 301 });
+//        break;
+//    case 'olac':
+//        miniBus.emit('0', { id: 302 });
+//        break;
+//    case 'tacu':
+//        miniBus.emit('0', { id: 303 });
+//        break;
+//    case 'tacd':
+//        miniBus.emit('0', { id: 304 });
+//        break;
+//    case 'pv':
+//        miniBus.emit('0', { id: 305 });
+//        break;
+//    case 'ov':
+//        miniBus.emit('0', { id: 306 });
+//        break;
+//    default:
+//        console.log('invalid command');
+//        break;
+//}
+//rl.prompt();
+//}).on('close', function() {
+//console.log('exit');
+//process.exit(0);
+//});
 miniBus.emit('00', { id: '0' }); // Sets devices according to the current time (at which the program was started)

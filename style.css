@@ -1,17 +1,16 @@
-.container-lumini,
 .container-temperaturi,
-.container-acces,
-.container-sala-clasa,
-.container-videoproiector {
+#container-acces,
+#container-videoproiector,
+#container-lumini {
     display: flex;
     justify-content: space-evenly;
     padding-bottom: 30px;
     border-bottom: 1px solid gray;
 }
 
-.led-lumina-ambientala,
-.led-lumina-bazin,
-.led-lumina-ambientala-clasa,
+#led-6,
+#led-1,
+#led-11,
 .led-videoproiector {
     width: 24px;
     height: 24px;
@@ -20,7 +19,6 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 12px;
 }
 
-.container-lumina-ambientala,
 .container-lumina-bazin,
 .container-temperatura-bazin,
 .container-temperatura-ambientala,
