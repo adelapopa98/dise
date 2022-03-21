@@ -42,7 +42,7 @@ const file = {
             '4': { starePompa: 'on' }
         }
     },
-    '201': { 'this.detectie = !!data.val': null },
+    '201': { 'this.detectie = !!data.val': '' },
     '202': {
         'this.temperaturaAmbientala = data.val': null,
         'this.temperaturaAmbientala >= this.TAmbientDorita': { '3': { stareCentrala: 'off' }, '5': { stareRadiator: 'off' } },
@@ -56,7 +56,7 @@ const file = {
     '305': { '13': { stareVideoproiector: 'Permis' } },
     '306': { '13': { stareVideoproiector: 'Respins' } },
     '400': { 'this.temperaturaAmbientalaClasa = data.val': '' },
-    '401': 'intensitate lumina ambientala',
+    '401': { 'this.detectie = !!data.val': '' },
     '402': 'stareVideoproiector',
     vars: 'this.temperaturaAmbientala=21; this.temperaturaBazin=30; this.temperaturaAmbientalaClasa=21; this.TAmbientDorita=21; this.TAmbientClasaDorita=21; this.TBazinDorita=30; this.detectie=true;'
 }
