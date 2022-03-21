@@ -96,6 +96,12 @@ class Led extends Device {
             <p class="text-white" id="set${this.id}">${this.intensitate} ${this.culoare}</p>
             </div>`;
         document.getElementById('container-lumini').append(htmlLed);
+        document.getElementById(`${this.id}-on`).addEventListener('click', () => {
+            miniBus.emit('0', { id: `${this.id}-on` })
+        });
+        document.getElementById(`${this.id}-off`).addEventListener('click', () => {
+            miniBus.emit('0', { id: `${this.id}-off` })
+        });
     };
 };
 
@@ -115,10 +121,16 @@ class Acces extends Device {
         <h2 class="text-light">${name}</h2>
         <p id="input-acces" class="text-white">${this.stareAcces}</p>
         <div class="container-buttons">
-            <button id="permite_acces" class="btn btn-success">Permite ${name}</button>
-            <button id="respinge_acces" class="btn btn-danger">Respinge ${name}</button>
+            <button id="2-on" class="btn btn-success">Permite ${name}</button>
+            <button id="2-off" class="btn btn-danger">Respinge ${name}</button>
         </div>`;
         document.getElementById('container-acces').append(htmlAcces);
+        document.getElementById(`${this.id}-on`).addEventListener('click', () => {
+            miniBus.emit('0', { id: `${this.id}-on` })
+        });
+        document.getElementById(`${this.id}-off`).addEventListener('click', () => {
+            miniBus.emit('0', { id: `${this.id}-off` })
+        });
     };
 };
 
@@ -189,7 +201,7 @@ class Radiator extends Device {
 class Videoproiector extends Device {
     constructor(name, id) {
         super(name, id);
-        this.stareVideoproiector = "Respins";
+        this.stareVideoproiector = "Oprit";
         miniBus.on(this.id.toString(), ({ stareVideoproiector }) => {
             this.stareVideoproiector = stareVideoproiector;
             document.getElementById("stare-Videoproiector").innerText = `${this.stareVideoproiector}`;
@@ -202,10 +214,16 @@ class Videoproiector extends Device {
             <h2 class="text-light">Videoproiector sala de clasa</h2>
             <p id="stare-Videoproiector" class="text-white">${this.stareVideoproiector}</p>
             <div class="container-buttons">
-                <button id="porneste-videoproiector" class="btn btn-primary">Porneste videoproiector</button>
-                <button id="opreste-videoproiector" class="btn btn-danger">Opreste lumina videoproiector</button>
+                <button id="13-on" class="btn btn-primary">Porneste videoproiector</button>
+                <button id="13-off" class="btn btn-danger">Opreste lumina videoproiector</button>
             </div>`;
         document.getElementById('container-videoproiector').append(htmlVideoproiector);
+        document.getElementById(`${this.id}-on`).addEventListener('click', () => {
+            miniBus.emit('0', { id: `${this.id}-on` })
+        });
+        document.getElementById(`${this.id}-off`).addEventListener('click', () => {
+            miniBus.emit('0', { id: `${this.id}-off` })
+        });
     };
 };
 
@@ -230,52 +248,23 @@ let devices = [];
 device_config.forEach(dvc => {
     devices.push(new dvc.type(dvc.name, dvc.id));
 });
-document.getElementById('1-on').addEventListener('click', () => {
-    miniBus.emit('0', { id: 101 })
-});
-document.getElementById('1-off').addEventListener('click', () => {
-    miniBus.emit('0', { id: 102 })
-});
-document.getElementById('permite_acces').addEventListener('click', () => {
-    miniBus.emit('0', { id: 105 })
-});
-document.getElementById('respinge_acces').addEventListener('click', () => {
-    miniBus.emit('0', { id: 106 })
-});
-document.getElementById('6-on').addEventListener('click', () => {
-    miniBus.emit('0', { id: 109 })
-});
-document.getElementById('6-off').addEventListener('click', () => {
-    miniBus.emit('0', { id: 110 })
-});
-document.getElementById('11-on').addEventListener('click', () => {
-    miniBus.emit('0', { id: 301 })
-});
-document.getElementById('11-off').addEventListener('click', () => {
-    miniBus.emit('0', { id: 302 })
-});
-document.getElementById('porneste-videoproiector').addEventListener('click', () => {
-    miniBus.emit('0', { id: 305 })
-});
-document.getElementById('opreste-videoproiector').addEventListener('click', () => {
-    miniBus.emit('0', { id: 306 })
-});
+
 document.getElementById('temperatura_bazin_up').addEventListener('click', () => {
-    miniBus.emit('0', { id: 103 });
+    miniBus.emit('0', { id: '8-up' });
 });
 document.getElementById('temperatura_bazin_down').addEventListener('click', () => {
-    miniBus.emit('0', { id: 104 });
+    miniBus.emit('0', { id: '8-down' });
 });
 document.getElementById('temperatura_ambientala_up').addEventListener('click', () => {
-    miniBus.emit('0', { id: 107 });
+    miniBus.emit('0', { id: '7-up' });
 });
 document.getElementById('temperatura_ambientala_down').addEventListener('click', () => {
-    miniBus.emit('0', { id: 108 });
+    miniBus.emit('0', { id: '7-down' });
 });
 document.getElementById('temperatura-clasa-UP').addEventListener('click', () => {
-    miniBus.emit('0', { id: 303 });
+    miniBus.emit('0', { id: '14-up' });
 });
 document.getElementById('temperatura-clasa-DOWN').addEventListener('click', () => {
-    miniBus.emit('0', { id: 304 });
+    miniBus.emit('0', { id: '14-down' });
 });
 miniBus.emit('00', { id: '0' }); // Sets devices according to the current time (at which the program was started)
