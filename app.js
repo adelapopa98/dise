@@ -93,7 +93,7 @@ class Led extends Device {
             <div class="container-buttons">
             <button id="${this.id}-on" class="btn btn-primary">Porneste ${name}</button>
             <button id="${this.id}-off" class="btn btn-danger">Opreste ${name}</button>
-            <p class="text-white" id="set${this.id}">${this.intensitate}, ${this.culoare}</p>
+            <p class="text-white" id="set${this.id}">${this.intensitate} ${this.culoare}</p>
             </div>`;
         document.getElementById('container-lumini').append(htmlLed);
     };
@@ -126,7 +126,20 @@ class Centrala extends Device {
     constructor(name, id) {
         super(name, id);
         this.stareCentrala = "off";
-        miniBus.on(this.id.toString(), ({ stareCentrala }) => this.stareCentrala = stareCentrala);
+        miniBus.on(this.id.toString(), ({ stareCentrala }) => {
+            this.stareCentrala = stareCentrala;
+            document.getElementById("stare-centrala").innerText = `${this.stareCentrala}`;
+        });
+
+        let htmlCentrala = document.createElement('div');
+        htmlCentrala.setAttribute('class', 'container-centrala');
+        htmlCentrala.setAttribute('id', this.id);
+        htmlCentrala.innerHTML = `
+        <div class="container">
+            <p> Stare centrala </p>
+            <p id="stare-centrala"> ${ this.stareCentrala}</p>
+        </div>`;
+        document.getElementById('container-incalzire').append(htmlCentrala);
     };
 };
 
@@ -134,7 +147,20 @@ class Pompa extends Device {
     constructor(name, id) {
         super(name, id);
         this.starePompa = "off";
-        miniBus.on(this.id.toString(), (stare) => this.starePompa = stare);
+        miniBus.on(this.id.toString(), ({ starePompa }) => {
+            this.starePompa = starePompa;
+            document.getElementById("stare-pompa").innerText = `${this.starePompa}`;
+        });
+
+        let htmlPompa = document.createElement('div');
+        htmlPompa.setAttribute('class', 'container-pompa');
+        htmlPompa.setAttribute('id', this.id);
+        htmlPompa.innerHTML = `
+        <div class="container">
+            <p> Stare pompa </p>
+            <p id="stare-pompa"> ${this.starePompa}</p>
+        </div>`;
+        document.getElementById('container-incalzire').append(htmlPompa);
     };
 };
 
@@ -142,14 +168,28 @@ class Radiator extends Device {
     constructor(name, id) {
         super(name, id);
         this.stareRadiator = "off";
-        miniBus.on(this.id.toString(), (stare) => this.stareRadiator = stare);
+        miniBus.on(this.id.toString(), ({ stareRadiator }) => {
+            this.stareRadiator = stareRadiator;
+            document.getElementById("stare-radiator").innerText = `${this.stareRadiator}`;
+        });
+
+
+        let htmlRadiator = document.createElement('div');
+        htmlRadiator.setAttribute('class', 'container-pompa');
+        htmlRadiator.setAttribute('id', this.id);
+        htmlRadiator.innerHTML = `
+        <div class="container">
+            <p> Stare radiator </p>
+            <p id="stare-radiator"> ${this.stareRadiator}</p>
+        </div>`;
+        document.getElementById('container-incalzire').append(htmlRadiator);
     };
 };
 
 class Videoproiector extends Device {
     constructor(name, id) {
         super(name, id);
-        this.stareVideoproiector = "off";
+        this.stareVideoproiector = "Respins";
         miniBus.on(this.id.toString(), ({ stareVideoproiector }) => {
             this.stareVideoproiector = stareVideoproiector;
             document.getElementById("stare-Videoproiector").innerText = `${this.stareVideoproiector}`;
@@ -160,7 +200,6 @@ class Videoproiector extends Device {
         htmlVideoproiector.setAttribute('id', this.id);
         htmlVideoproiector.innerHTML = `
             <h2 class="text-light">Videoproiector sala de clasa</h2>
-            <div class="led-videoproiector" style="background-color: ${this.culoare}"></div>
             <p id="stare-Videoproiector" class="text-white">${this.stareVideoproiector}</p>
             <div class="container-buttons">
                 <button id="porneste-videoproiector" class="btn btn-primary">Porneste videoproiector</button>
