@@ -1,11 +1,11 @@
 const file = {
     '0': {
         'this.time.hour > 8 && this.time.hour <= 11 && this.time.date !== 5 && this.time.date !== 6 && this.detectie === true': {
-            '1': { intensitate: '90,', culoare: 'white' },
+            '1': { intensitate: 90, culoare: 'white' },
             '2': { stareAcces: 'Permis' },
             '3': { stareCentrala: 'on' },
-            '4': { 'stare pompa': 'on' },
-            '5': { 'stare radiator': 'on' },
+            '4': { starePompa: 'on' },
+            '5': { stareRadiator: 'on' },
             '6': { intensitate: 100, culoare: 'white' }
         },
         'this.time.hour > 11 && this.time.hour <= 13 && this.time.date !== 5 && this.time.date !== 6 && this.detectie === true': { '6': { intensitate: 60, culoare: 'white' } },
@@ -14,8 +14,8 @@ const file = {
             '1': { intensitate: 0, culoare: 'black' },
             '2': { stareAcces: 'Respins' },
             '3': { stareCentrala: 'off' },
-            '4': { 'stare pompa': 'off' },
-            '5': { 'stare radiator': 'off' },
+            '4': { starePompa: 'off' },
+            '5': { stareRadiator: 'off' },
             '6': { intensitate: 0, culoare: 'black' }
         }
     },
