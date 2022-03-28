@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3d model</title>
+</head>
+<style>
+    body {
+        background-color: white;
+    }
+    
+    canvas {
+        display: block;
+    }
+</style>
+
+<body>
+
+    <script src="./three.js"></script>
+    <script type="module" src="./GLTFLoader.js"></script>
+    <script type="module">
+        import {GLTFLoader} from './GLTFLoader.js'; var scene = new THREE.Scene(); var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000); var renderer = new THREE.WebGLRenderer(); renderer.setSize(window.innerWidth,
+        window.innerHeight); document.body.append(renderer.domElement); var loader = new GLTFLoader(); var obj; loader.load("test.gltf", function(gltf){ obj = gltf.scene; scene.add(gltf.scene) }); scene.background = new THREE.Color(0xFFFFFF); var light
+        = new THREE.HemisphereLight(0xffffff, 0x000000, 10); scene.add(light); camera.position.set(0,0,100); function animate() { requestAnimationFrame(animate); obj.rotation.y += 0.05; renderer.renderer } animate();
+    </script>
+</body>
+
+</html>
