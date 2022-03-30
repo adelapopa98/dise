@@ -9,7 +9,8 @@
 </head>
 <style>
     body {
-        background-color: white;
+        background-color: black;
+        margin: auto;
     }
     
     canvas {
@@ -22,9 +23,9 @@
     <script src="./three.js"></script>
     <script type="module" src="./GLTFLoader.js"></script>
     <script type="module">
-        import {GLTFLoader} from './GLTFLoader.js'; var scene = new THREE.Scene(); var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000); var renderer = new THREE.WebGLRenderer(); renderer.setSize(window.innerWidth,
-        window.innerHeight); document.body.append(renderer.domElement); var loader = new GLTFLoader(); var obj; loader.load("test.gltf", function(gltf){ obj = gltf.scene; scene.add(gltf.scene) }); scene.background = new THREE.Color(0xFFFFFF); var light
-        = new THREE.HemisphereLight(0xffffff, 0x000000, 10); scene.add(light); camera.position.set(0,0,100); function animate() { requestAnimationFrame(animate); obj.rotation.y += 0.05; renderer.renderer } animate();
+        import { GLTFLoader } from './GLTFLoader.js'; var scene = new THREE.Scene(); var camera = new THREE.PerspectiveCamera(100, window.innerWidth / window.innerHeight, 0.001, 1000); var renderer = new THREE.WebGLRenderer(); renderer.setSize(window.innerWidth,
+        window.innerHeight); document.body.append(renderer.domElement); var loader = new GLTFLoader(); var obj; loader.load("scene4.gltf", function(gltf) { obj = gltf.scene; scene.add(gltf.scene) }); scene.background = new THREE.Color(0x808080); var light
+        = new THREE.HemisphereLight(0x808080, 0x808080, 0.1); scene.add(light); camera.position.set(0, 0, 40); function animate() { requestAnimationFrame(animate); obj.rotation.y += 0.01; renderer.render(scene, camera); } animate();
     </script>
 </body>
 
