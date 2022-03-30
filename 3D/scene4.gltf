@@ -1,0 +1,122 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "THREE.GLTFExporter"
+  },
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "scene": 0,
+  "nodes": [
+    {
+      "matrix": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        -24.293276878214254,
+        -19.59855745937817,
+        -10.61797036557126,
+        1
+      ],
+      "name": "test (1).stl",
+      "mesh": 0
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 648,
+      "target": 34962,
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 648,
+      "byteLength": 648,
+      "target": 34962,
+      "byteStride": 12
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 1296,
+      "uri": "data:application/octet-stream;base64,AIAOQgAACUIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACUIAAAAAAAAAAAAAAAAAAAAAAIAOQgAACUIAAAAAAIAOQgAAAAAAAAAAAIAOQgAAAAAAAKdBAAAAAAAACUIAAKdBAAAAAAAAAAAAAKdBAAAAAAAACUIAAKdBAIAOQgAAAAAAAKdBAIAOQgAACUIAAKdBAAAAAAAACUIAAKdBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKdBAAAAAAAAAAAAAAAAAAAAAAAACUIAAKdBAAAAAAAACUIAAAAAAIAOQgAAAAAAAKdBAAAAAAAAAAAAAAAAAIAOQgAAAAAAAAAAAAAAAAAAAAAAAAAAAIAOQgAAAAAAAKdBSg4nQQAAAAD0GxVBSg4nQQAAAAD0GxVBAIAOQgAAAAAAAKdBSg4nQQAAAAD6DYBBSg4nQQAAAAD6DYBBAIAOQgAAAAAAAKdBKDlwQAAAAAD6DYBBAAAAAAAAAAAAAAAAKDlwQAAAAAD0GxVBAAAAAAAAAAAAAKdBKDlwQAAAAAD0GxVBAAAAAAAAAAAAAAAASg4nQQAAAAD0GxVBAAAAAAAAAAAAAKdBKDlwQAAAAAD0GxVBKDlwQAAAAAD6DYBBAAAAAAAAAAAAAKdBKDlwQAAAAAD6DYBBAIAOQgAAAAAAAKdBAIAOQgAACUIAAAAAAIAOQgAAAAAAAKdBAIAOQgAAAAAAAAAAAIAOQgAAAAAAAKdBAIAOQgAACUIAAAAAAIAOQgAACUIAAKdBAAAAAAAACUIAAKdBAIAOQgAACUIAAAAAAAAAAAAACUIAAAAAAIAOQgAACUIAAAAAAAAAAAAACUIAAKdBAIAOQgAACUIAAKdBAAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIC/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AACAvwAAAIAAAACAAACAvwAAAIAAAACAAACAvwAAAIAAAACAAACAvwAAAIAAAACAAACAvwAAAIAAAACAAACAvwAAAIAAAACAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAAAAAAAAgL8AAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAAAAAAAAAAgD8AAAAA"
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 54,
+      "max": [
+        35.625,
+        34.25,
+        20.875
+      ],
+      "min": [
+        0,
+        0,
+        0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 54,
+      "max": [
+        1,
+        1,
+        1
+      ],
+      "min": [
+        -1,
+        -1,
+        -1
+      ],
+      "type": "VEC3"
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "emissiveFactor": [
+        0.3137254901960784,
+        0.4745098039215686,
+        0.20784313725490197
+      ]
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "mode": 4,
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1
+          },
+          "material": 0
+        }
+      ]
+    }
+  ]
+}
